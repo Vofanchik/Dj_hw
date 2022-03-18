@@ -15,7 +15,10 @@ Including another URLconf
 """
 
 from django.urls import path
+from calculator.views import calc
 
 urlpatterns = [
+    path('', calc),
+    path('<rec>', calc),
     # здесь зарегистрируйте вашу view-функцию
 ]
