@@ -36,6 +36,12 @@ def show_catalog(request):
 
 def show_product(request, slug):
     template = 'product.html'
-    phone_obj = Phone.objects.all()
-    context = {}
+    keys_pho = ['name', 'price', 'image', 'release_date', 'lte_exists', 'slug']
+
+    phone_obj = Phone.objects.filter(slug=slug)
+    pho = [[c.name, c.price, c.image, c.release_date, c.lte_exists,
+            c.slug] for c in phone_obj][0]
+    lst = dict(zip(keys_pho, pho))
+
+    context = {'phone': lst}
     return render(request, template, context)
